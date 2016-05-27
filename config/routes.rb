@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :products
+  resources :users
+  resources :sessions
+  
+  # First page to load on application start
+  root 'page#home'
+  
+  get 'page/shop'
+  get 'page/orders'
+  get 'page/about'
   get 'sessions/new'
-
   get 'users/new'
   
+  # Rename action
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  root :to => "users#new"
-  resources :users
-  resources :sessions
+  # root :to => "users#new"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -62,6 +72,5 @@ Rails.application.routes.draw do
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  #     #   end
 end
