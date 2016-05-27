@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :shoppers
+  resources :orders
+  resources :carts
   resources :products
   resources :products
   resources :users
@@ -19,6 +22,11 @@ Rails.application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   # root :to => "users#new"
   
+  # Product Redirect
+  get '/cart' => 'cart#index'
+  get '/cart/clear' => 'cart#clearCart'
+  get '/cart/:id' => 'cart#add'
+  get '/users' => 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
